@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
+
 // Импорт действий Redux
 import {
   openDialogSignIn,
@@ -12,17 +13,23 @@ import {
 import {
   Card,
   Typography,
+    Chip,
 } from '@material-ui/core';
 
 // Импорт иконок Material-UI
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { grey } from '@material-ui/core/colors';
 
 // Локальная таблица стилей
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(1),
   },
+  card: {
+    margin: theme.spacing (2),
+    padding: theme.spacing(1),
+      }
 }));
 
 /* Входящие данные */
@@ -55,12 +62,18 @@ function BlockTwo({
   return (
     <Card className={classes.root}>
       <Typography variant='h5'>
-        Сергей Гаврилов
+        Задачи
       </Typography>
-      <Typography variant='body1'>
-        Здесь должен быть список задач с названием, темой и тегами
-      </Typography>
-    </Card>
+      {data.map(key => {
+        return (
+        <Card className={classes.card}>
+          <Typography variant='h4' color='primary'>{key.name}</Typography>
+          <Typography variant='inherit' color='textPrimary'>{key.subject}</Typography>
+          <Typography></Typography>
+          {key.tags.map(tag => <Chip label={tag} color="secondary"/>)}
+          </Card>)               
+      })}
+          </Card>
   );
 }
 

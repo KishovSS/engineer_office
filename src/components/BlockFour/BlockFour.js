@@ -10,8 +10,11 @@ import {
 
 // Импорт компонентов Material-UI
 import {
+  Box,
   Card,
+  Container,
   Typography,
+  Grid,
 } from '@material-ui/core';
 
 // Импорт иконок Material-UI
@@ -57,6 +60,8 @@ const data = [
 // Функция-компонент
 function BlockFour({
 
+
+
 }) {
   const classes = useStyles();
 
@@ -64,11 +69,124 @@ function BlockFour({
   return (
     <Card className={classes.root}>
       <Typography variant='h5'>
-        Юрий Лашманов
+        Рассписание занятий
       </Typography>
-      <Typography variant='body1'>
-        Здесь должено быть расписание занятий
-      </Typography>
+      <Container>
+      <Grid container spacing={3}>
+       <Grid item xs={6}>
+          <Box>
+            <Typography variant='body1'>
+              {data[0].startTime}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[0].endTime}
+              </Typography>
+              </Box>
+         </Grid>
+        <Grid item xs={6}>
+          <Box>
+            <Typography variant='body1'>
+            {data[0].name}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[0].teacherName}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[0].address}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[0].type}
+              </Typography>
+              </Box>
+        </Grid>
+        </Grid>
+      </Container>
+    
+      <Container>
+      <Grid container spacing={3}>
+       <Grid item xs={6}>
+          <Box>
+            <Typography variant='body1'>
+              {data[1].startTime}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[1].endTime}
+              </Typography>
+              </Box>
+         </Grid>
+        <Grid item xs={6}>
+          <Box>
+            <Typography variant='body1'>
+            {data[1].name}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[1].teacherName}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[1].address}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[1].type}
+              </Typography>
+              </Box>
+        </Grid>
+        </Grid>
+      </Container>
+
+      <Container>
+      <Grid container spacing={3}>
+       <Grid item xs={6}>
+          <Box>
+            <Typography variant='body1'>
+              {data[2].startTime}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[2].endTime}
+              </Typography>
+              </Box>
+         </Grid>
+        <Grid item xs={6}>
+          <Box>
+            <Typography variant='body1'>
+            {data[2].name}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[2].teacherName}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[2].address}
+              </Typography>
+              </Box>
+          <Box>
+            <Typography variant='body1'>
+            {data[2].type}
+              </Typography>
+              </Box>
+        </Grid>
+        </Grid>
+      </Container>
     </Card>
   );
 }
