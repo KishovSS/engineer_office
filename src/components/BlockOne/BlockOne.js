@@ -11,6 +11,7 @@ import {
 
 // Импорт компонентов Material-UI
 import {
+  Button,
   Card, 
   IconButton, 
   Typography,
@@ -30,22 +31,27 @@ const useStyles = makeStyles((theme) => ({
 
 /* Входящие данные */
 const dataBig = [
-  {'Январь': {
+  {
+    'Месяц' : 'Январь',
     'Всего обращений': '750',
     'Нарешен КС': '43',
     'Возвратов': '33',
-  }},
-  {'Февраль': {
+  },
+  { 'Месяц' :'Февраль',
     'Всего обращений': '654',
     'Нарешен КС': '76',
     'Возвратов': '33',
-  }},
-  {'Март': {
+  },
+  { 'Месяц' :'Март',
     'Всего обращений': '720',
     'Нарешен КС': '83',
     'Возвратов': '13',
-  }}
+  }
 ];
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random()*(max-min))+min
+}
 
 // Функция-компонент
 function BlockOne({
@@ -53,59 +59,77 @@ function BlockOne({
 }) {
 
   const classes = useStyles();
-  const [chartData, setChartData] = useState({})
+  
 
-  const chart = () => {
-    setChartData({ 
-      labels: dataBig.map(key =>{
-        return (
-          Object.keys(key)
-        )
+  const allTask = () => {
+    return [getRandomInt(100, 1000),getRandomInt(100, 1000),getRandomInt(100, 1000)]
+    }
+  const naruKS = () => {
+    return [getRandomInt(20, 50),getRandomInt(20, 50),getRandomInt(20, 50)]
+    }
+  const vozrat = () => {
+    return [getRandomInt(20, 50),getRandomInt(20, 50),getRandomInt(20, 50)]
+    }
+  const [chartData, setChartData] = useState(allTask())
+  const [chartData1, setChartData1] = useState(naruKS())
+  const [chartData2, setChartData2] = useState(vozrat())
+
+   const chart ={    
+      labels: dataBig.map(month =>{
+        return month['Месяц']
       }),
       datasets: [
-        {    
-          label:[],      
-          data: [750, 654, 720],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(255, 206, 86, 0.5)',
-            'rgba(75, 192, 192, 0.5)',
-            'rgba(153, 102, 255, 0.5)',
-            'rgba(255, 159, 64, 0.5)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
+        {
+          label: 'Всего обращений',     
+          data: chartData,              
+          backgroundColor: '#1e3d59',
           
+          borderColor: '#1e88e5',
+          
+        }, {
+          label: 'Нарешен КС',
+          data: chartData1,              
+          backgroundColor: '#ff6e40',
+          borderColor: '#c2185b',
+        }, {
+          label: 'Возвратов',
+          data: chartData2,            
+          backgroundColor: '#ffc13b',
+          borderColor: '#00796b',
         }],
-            
-    })
-  }
+    
+    }
+  
+    
+  const optiBar = {
+    title: {text:'enginer diagram', display:true},
+    animation: {animateScale: true},
+    scales: {
+      xAxes: [{
+          stacked: true
+      }],
+      yAxes: [{
+          stacked: true
+      }]
+  },
+
+  } 
 
 
-
-
-  useEffect(() => {
-    chart()
-  }, [])
-
+ 
   return (
     <Card className={classes.root}>
       <Typography variant='h5'>
         Блок - Фадин Алексей
       </Typography>
-      <Bar data={chartData} options={{cutoutPercentage:50, 
-                                    title: {text:'enginer diagram', display:true},
-                                    animation: {animateScale: true},                                    
-                                    }} />
-
-
+      
+      
+        <Bar data={chart} options={optiBar} />
+        <Button onClick={()=>{
+          setChartData(allTask());
+          setChartData1(naruKS());
+          setChartData2(vozrat());
+        }} >Fast clic ME!</Button>
     </Card>
   );
 }
