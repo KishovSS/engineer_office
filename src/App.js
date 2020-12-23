@@ -15,9 +15,7 @@ function App({
   isDialogSingIn,
 }) {
   return (
-    <Box>
-      <MainPage />
-    </Box>
+    <MainPage />
   );
 }
 
