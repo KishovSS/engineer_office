@@ -120,7 +120,7 @@ function BlockOne({
   return (
     <Card className={classes.root}>
       <Typography variant='h5'>
-        Блок - Фадин Алексей
+        Ну и как ты поработал?
       </Typography>
       
       
