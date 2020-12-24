@@ -6,10 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Container,
   Grid,
+  Box,
 } from '@material-ui/core';
 
 // Импорт компонентов
 import Header from '../../components/Header/Header';
+import ContactCard from '../../components/ContactCard/ContactCard';
 import BlockOne from '../../components/BlockOne/BlockOne';
 import BlockTwo from '../../components/BlockTwo/BlockTwo';
 import BlockThree from '../../components/BlockThree/BlockThree';
@@ -28,9 +30,12 @@ function MainPage() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg">
+    <Box>
       <Header />
       <Grid container spacing={2} className={classes.root}>
+        <Grid item xs={12}>
+          <ContactCard />
+        </Grid>
         <Grid item xs={6}>
           <BlockOne />
         </Grid>
@@ -46,7 +51,7 @@ function MainPage() {
           <BlockFour />
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }
 

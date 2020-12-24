@@ -1,5 +1,5 @@
 // Импорт библиотек
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -10,6 +10,7 @@ import {
 
 // Импорт компонентов Material-UI
 import {
+  Button,
   Box,
   Card,
   Container,
@@ -56,137 +57,60 @@ const data = [
   },
 ];
 
+function reverseArr(arr) {
+    return arr.reverse()
+  }
+  
+function viewTask(task) {
+  return (
+    <Grid container spacing={2}>
+      <Grid item xs={2}>
+        <Typography variant="body1">
+          {task.startTime}
+        </Typography>
+        <Typography variant="body1">
+          {task.endTime}
+        </Typography>
+      </Grid>
+      <Grid item xs={10}>
+        <Typography variant="h6">
+          {task.name}
+        </Typography>
+        <Typography variant="h6">
+          {task.teacherName}
+        </Typography>
+        <Typography variant="h6">
+          {task.address}
+        </Typography>
+        <Typography variant="h6">
+          {task.type}
+        </Typography>
+      </Grid>
+    </Grid>
+  )
+}
+
+
 
 // Функция-компонент
 function BlockFour({
 
 
-
 }) {
   const classes = useStyles();
 
+const [arr, setArr] = useState(data);
 
   return (
     <Card className={classes.root}>
       <Typography variant='h5'>
         Рассписание занятий
       </Typography>
-      <Container>
-      <Grid container spacing={3}>
-       <Grid item xs={6}>
-          <Box>
-            <Typography variant='body1'>
-              {data[0].startTime}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[0].endTime}
-              </Typography>
-              </Box>
-         </Grid>
-        <Grid item xs={6}>
-          <Box>
-            <Typography variant='body1'>
-            {data[0].name}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[0].teacherName}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[0].address}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[0].type}
-              </Typography>
-              </Box>
-        </Grid>
-        </Grid>
-      </Container>
-    
-      <Container>
-      <Grid container spacing={3}>
-       <Grid item xs={6}>
-          <Box>
-            <Typography variant='body1'>
-              {data[1].startTime}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[1].endTime}
-              </Typography>
-              </Box>
-         </Grid>
-        <Grid item xs={6}>
-          <Box>
-            <Typography variant='body1'>
-            {data[1].name}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[1].teacherName}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[1].address}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[1].type}
-              </Typography>
-              </Box>
-        </Grid>
-        </Grid>
-      </Container>
-
-      <Container>
-      <Grid container spacing={3}>
-       <Grid item xs={6}>
-          <Box>
-            <Typography variant='body1'>
-              {data[2].startTime}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[2].endTime}
-              </Typography>
-              </Box>
-         </Grid>
-        <Grid item xs={6}>
-          <Box>
-            <Typography variant='body1'>
-            {data[2].name}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[2].teacherName}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[2].address}
-              </Typography>
-              </Box>
-          <Box>
-            <Typography variant='body1'>
-            {data[2].type}
-              </Typography>
-              </Box>
-        </Grid>
-        </Grid>
-      </Container>
+      {data.map(element => {
+        return viewTask(element)
+      })}
+    <Button onClick={() => setArr(reverseArr(data))}>Reverse</Button>
+     
     </Card>
   );
 }

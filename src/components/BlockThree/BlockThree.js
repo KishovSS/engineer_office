@@ -12,7 +12,9 @@ import {
 import {
   Card,
   Typography,
-} from '@material-ui/core';
+  Chip, 
+} from '@material-ui/core'; 
+import Avatar from '@material-ui/core/Avatar';
 
 // Импорт иконок Material-UI
 import MailIcon from '@material-ui/icons/Mail';
@@ -21,8 +23,17 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 // Локальная таблица стилей
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(1),
-  },
+    padding: theme.spacing(5),
+  }, 
+  small: {
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+  }, 
+  card: {
+    margin: theme.spacing (3),
+    padding: theme.spacing(3),
+  }, 
+ 
 }));
 
 /* Входящие данные */
@@ -59,15 +70,27 @@ function BlockThree({
 
   return (
     <Card className={classes.root}>
-      <Typography variant='h5'>
-        Сергей Кишов
+      <Typography variant='h6'>
+      Блок Сереги
+      </Typography> 
+      <Typography variant='h5' color='primary'>
+      Ключевые сотрудники: 
       </Typography>
-      <Typography variant='body1'>
-        Здесь должены быть карточки избраных сотрудников
-      </Typography>
-    </Card>
+      {data.map(key => {
+        return ( 
+          <Card className={classes.card}> 
+            <Typography variant='h4' color='black'>{key.username}  </Typography> 
+            <Chip avatar={<Avatar src={key.avatar} className={classes.small} />} />
+            <Typography variant='body2' color='textPrimary'>{key.position}</Typography> 
+            <Typography variant='subtitle1'>{key.telephone}</Typography> 
+            <Typography variant='subtitle2' display='inline' >{key.url}</Typography> 
+            <Typography></Typography> 
+            </Card>) 
+        })}
+            </Card>
   );
 }
+
 
 
 // Redux (не удалять!!!)
@@ -80,4 +103,6 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(BlockThree);
+)(BlockThree); 
+
+
